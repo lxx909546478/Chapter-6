@@ -175,7 +175,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
                 sortOrder               // The sort order
         );
 
-        Log.i(TAG, "perfrom query data:");
+        Log.i(TAG, "perform query data:");
         while (cursor.moveToNext()) {
             long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(FeedEntry._ID));
             String title = cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_TITLE));
@@ -201,6 +201,7 @@ public class DatabaseActivity extends AppCompatActivity implements View.OnClickL
             super(looper);
         }
 
+        // 从sendEmptyMessage()方法中拿到参数
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);

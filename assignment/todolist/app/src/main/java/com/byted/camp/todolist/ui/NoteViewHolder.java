@@ -33,6 +33,7 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
     private TextView contentText;
     private TextView dateText;
     private View deleteBtn;
+    private View itemView;
 
     public NoteViewHolder(@NonNull View itemView, NoteOperator operator) {
         super(itemView);
@@ -42,6 +43,7 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         contentText = itemView.findViewById(R.id.text_content);
         dateText = itemView.findViewById(R.id.text_date);
         deleteBtn = itemView.findViewById(R.id.btn_delete);
+        this.itemView=itemView;
     }
 
     public void bind(final Note note) {
@@ -70,6 +72,15 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         } else {
             contentText.setTextColor(Color.BLACK);
             contentText.setPaintFlags(contentText.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+
+        // 按照优先级更新颜色
+        if(note.getPriority()==2){
+            itemView.setBackgroundColor(Color.RED);
+        }else if(note.getPriority()==1){
+            itemView.setBackgroundColor(Color.YELLOW);
+        }else{
+            itemView.setBackgroundColor(Color.WHITE);
         }
     }
 }
